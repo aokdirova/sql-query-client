@@ -28,7 +28,7 @@ const App = () => {
     );
 
     const data = await response.json();
-    return data.response.trim();
+    return data;
   };
 
   return (
