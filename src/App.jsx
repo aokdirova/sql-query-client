@@ -48,7 +48,7 @@ const App = () => {
           onChange={handleInputChange}></input>
         <input type='submit' value='Generate your query'></input>
       </form>
-      <div styles={{paddingTop: '10px'}}> {isLoading ? 'Loading answer...' : <pre>{sqlQuery}</pre>}</div>
+    <pre>{isLoading ? 'Loading answer' : sqlQuery}</pre>
     </main>
   );
 };
