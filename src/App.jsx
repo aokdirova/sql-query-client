@@ -6,13 +6,18 @@ import { useState } from "react";
 const App = () => {
   const [queryDescription, setQueryDescription] = useState("");
   const [sqlQuery, setSqlQuery] = useState("");
+  const [isLoading, setLoading] = useState(false);
 
   const handleInputChange = (e) => setQueryDescription(e.target.value);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     const generatedSqlQuery = await generateQuery();
-    setSqlQuery(generatedSqlQuery);
+    if(generatedSqlQuery) { 
+      setLoading(false);
+      setSqlQuery(generatedSqlQuery);
+    }
   };
 
   const generateQuery = async () => {
@@ -43,7 +48,7 @@ const App = () => {
           onChange={handleInputChange}></input>
         <input type='submit' value='Generate your query'></input>
       </form>
-      <pre>{sqlQuery}</pre>
+      <div> {isLoading ? 'Loading answer...' : <pre>{sqlQuery}</pre></div>
     </main>
   );
 };
